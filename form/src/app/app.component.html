@@ -1,0 +1,70 @@
+<div class="container">
+  <h1>RSVP Form</h1>
+  <form #form="ngForm" (ngSubmit)="processForm(form)">
+    <div class="form-group">
+      <label for="">Name:</label>
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        required 
+        [(ngModel)]="model.name" 
+        #name="ngModel"
+      />
+    </div>
+    <div>
+      <p>Name + phone number is:</p>
+      <p *ngIf = "model.name.length > 0">{{model.name}} + {{model.phone}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="">Email:</label>
+      <input 
+        type="text" 
+        id="email" 
+        name="email" 
+        required 
+        [(ngModel)]="model.email" 
+        #email="ngModel"
+      />
+    </div>
+
+    
+    <div class="form-group">
+      <label for="">Phone:</label>
+      <input 
+        type="text" 
+        id="phone" 
+        name="phone" 
+        required
+        minlength="8" 
+        [(ngModel)]="model.phone"
+        #phone="ngModel"
+      />
+    </div>
+    <!-- double binding: event binding and property binding -->
+
+    <div class="form-group">
+      <label for="">Attending:
+        <input 
+          type="radio" 
+          name="attending" 
+          required
+          value="yes"
+          [(ngModel)]="model.attending"
+          #attending="ngModel"
+        />Yes
+        <input 
+        type="radio" 
+        name="attending" 
+        required
+        value="no"
+        [(ngModel)]="model.attending"
+        #attending="ngModel"
+      />No
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="form.invalid">Send</button>
+  </form>
+</div>
